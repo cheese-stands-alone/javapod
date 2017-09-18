@@ -1,0 +1,29 @@
+group 'io.rj.rwhite'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
+
+task testJar (type: Jar) {
+    baseName 'testJar'
+    from "javapod.properties"
+    from "hello.jar"
+    from sourceSets.main.runtimeClasspath
+    manifest {
+        attributes 'Main-Class': 'io.rj.rwhite.JavaPod'
+    }
+}
+
+wrapper {
+    gradleVersion = '4.1'
+}
